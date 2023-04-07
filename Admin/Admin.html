@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <!-- Line awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+    <!-- tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- BS4 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./Admin.css" />
+  </head>
+  <body>
+    <div class="content">
+      <h1 class="text-5xl text-center mt-4 font-bold">QUẢN LÝ SẢN PHẨM</h1>
+      <div class="flex justify-between mt-10">
+        <div class="panel">
+          <button id="btnAdd" class="font-semibold" data-bs-toggle="modal" data-bs-target="#modal">
+            <i class="las la-plus"></i>
+            Thêm mới
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title h3 fw-bold">Thêm Sản Phẩm</h5>
+              <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group d-none">
+                <label for="productID">Mã Sản Phẩm</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="productID"
+                  id="productID"
+                  aria-describedby="helpId"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="tenProduct">Tên Sản Phẩm</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="tenProduct"
+                  id="tenProduct"
+                  aria-describedby="helpId"
+                  placeholder="Nhập tên sản phẩm"
+                  autocomplete="off"
+                />
+                <span class="text-danger" id="nameNotice"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="gia">Giá</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="gia"
+                  id="gia"
+                  aria-describedby="helpId"
+                  placeholder="Nhập giá sản phẩm"
+                  autocomplete="off"
+                />
+                <span class="text-danger" id="priceNotice"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="hinhAnh">Hình ảnh</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="hinhAnh"
+                  id="hinhAnh"
+                  aria-describedby="helpId"
+                  placeholder="Nhập hình ảnh"
+                  autocomplete="off"
+                />
+                <span class="text-danger" id="imageNotice"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="moTa">Mô tả sản phẩm</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="moTa"
+                  id="moTa"
+                  aria-describedby="helpId"
+                  placeholder="Nhập mô tả sản phẩm"
+                  autocomplete="off"
+                />
+                <span class="text-danger" id="describeNotice"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="trangThai">Trạng thái</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="trangThai"
+                  id="trangThai"
+                  aria-describedby="helpId"
+                  placeholder="Nhập trạng thái"
+                  autocomplete="off"
+                />
+                <span class="text-danger" id="statusNotice"></span>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="addBtn" class="btn btn-success" onclick="addProduct()">Thêm</button>
+              <button id="deleteBtn" class="btn btn-secondary" onclick="reset()">Reset</button>
+              <button class="btn btn-primary" data-bs-dismiss="modal" onclick="updateProduct()">
+                Cập nhật
+              </button>
+              <button class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="w-full border-collapse border border-slate-500 my-10">
+        <thead>
+          <tr>
+            <th class="border border-slate-600">STT</th>
+            <th class="border border-slate-600">Tên sản phẩm</th>
+            <th class="border border-slate-600">Giá sản phẩm</th>
+            <th class="border border-slate-600">Hình ảnh</th>
+            <th class="border border-slate-600">Mô tả</th>
+            <th class="border border-slate-600 w-40">Trạng thái</th>
+            <th class="border border-slate-600">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="tableProduct"></tbody>
+      </table>
+    </div>
+
+    <!-- axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+      integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- bs4 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- My JS -->
+    <script src="./controllerAdmin/validate.js"></script>
+    <script src="./modelAdmin/modelAdmin.js"></script>
+    <script src="./controllerAdmin/controllerAdmin.js" ></script>
+    <script  src="./controllerAdmin/Admin.js"></script>
+  </body>
+</html>
