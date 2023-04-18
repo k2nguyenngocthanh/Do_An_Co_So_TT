@@ -3,7 +3,7 @@
 const BASE_URL = 'https://63dc7db82308e3e319e87892.mockapi.io/Capstone';
 
 function renderProduct(products) {
-  console.log("🚀 ~ file: Admin.js:6 ~ renderProduct ~ products", products)
+
   
   let contentHTML = '';
   let stt = 0;
