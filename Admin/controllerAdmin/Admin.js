@@ -15,7 +15,8 @@ function renderProduct(products) {
                         <td class="border border-slate-600">${stt}</td>
                         <td class="border border-slate-600">${product.tenSP}</td>
                         <td class="border border-slate-600">${product.giaSP}</td>
-                        <td class="border border-slate-600">${product.hinhAnh}</td>
+                        <td class="border border-slate-600"><img style='width: 50px' src='${product.hinhAnh}'/></td></td>
+                        
                         <td class="border border-slate-600">${product.moTa}</td>
                         <td class="border border-slate-600">${product.trangThai}</td>
                        </td>

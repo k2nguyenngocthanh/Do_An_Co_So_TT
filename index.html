@@ -9,7 +9,8 @@
     <link
       rel="stylesheet"
       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    />
+    />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Owl Carousel -->
     <link
       rel="stylesheet"
@@ -25,8 +26,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- My CSS -->
     <link rel="stylesheet" href="./index.css" />
   </head>
@@ -42,6 +45,14 @@
               <i class="las la-search"></i>
             </div>
             <input type="text" placeholder="Bạn cần tìm gì?" />
+          </div>
+          <div class="header__login texg-lg font-medium flex ">
+            <button >
+              <i class="fa fa-user-lock"></i>
+              <span>
+                <a href="#"> Login</a>
+              </span>
+            </button>
           </div>
           <div class="header__item text-lg font-medium flex">
             <div class="item-btn flex items-center">
@@ -133,9 +144,9 @@
         
         </div>
         <div class="modal__footer">
-          <div class="modal__total">
-            <h3>Total:</h3>
-            <span>46.999.0000đ</span>
+         <div class="modal__total" id="modal__total">
+          <h3>Total:</h3>
+            <span id="Total">46.999.0000đ</span>
           </div>
           <div class="modal__btn">
             <button
@@ -144,7 +155,7 @@
             >
               Đóng
             </button>
-            <button
+            <button onclick="checkOut()"
               class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded text-sm px-2 py-1 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
               Đặt hàng

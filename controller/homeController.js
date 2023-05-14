@@ -1,7 +1,7 @@
 // render product
-const renderProduct = (arr) => {
+const renderProduct = (cartList) => {
     let template = '';
-    arr.forEach((item) => {
+    cartList.forEach((item) => {
       template += /*html*/ `
                               <div class="product__card">
                                 <div class="card__img">
@@ -23,33 +23,55 @@ const renderProduct = (arr) => {
     document.getElementById('card_product').innerHTML = template;
   };
   
-  let renderContentCart = (arr) => {
+  let renderContentCart = (cartList) => {
+ 
     let contentHTML = '';
-  
-    arr.forEach((item) => {
+    let total = 0;
+    let total1Product = 0;
+    cartList.forEach((item) => {
       let contentCart = `
                         <div id="modal__content">
                           <div class="modal__img">
                             <img src="${item.product.hinhAnh}" alt="" />
                           </div>
                           <div class="modal__quantity">
-                            <span>${item.quantity}</span>
+                          <button onclick="onChangeQuantity(
+                            ${item.id}, 
+                            'decrement'
+                          )" class=" fa fa-angle-left "></button>
+                            <span  id="cart-quantity"> ${item.quantity} </span>
+                            <button onclick="onChangeQuantity(
+                              ${item.id},
+                              'increment'
+                            )" class="fa fa-angle-right"></button>
                           </div>
                           <div class="modal__price">
-                            <span>${item.product.giaSP}</span>
+                            <span>${item.product.giaSP * item.quantity}</span>
                           </div>
                           <div class="modal__icon">
                             <i class="las la-times" onclick="deleteIndexCartItem('${item.product.maSP}')"></i>
                           </div>
                         </div> 
                       `;
+                      `<div>
+                      <span>
+                  
+                      </span></div>
+                      
+                      
+                      `
       contentHTML += contentCart;
+      total1Product = item.product.giaSP * item.quantity;
+    total += total1Product;
+   
     });
-  
+
     document.getElementById('modal__wrapper').innerHTML = contentHTML;
+    document.getElementById('Total').innerHTML = total;
+ 
   };
+
+
+
   
-  let saveCart = () => {
-    localStorage.setItem('shoppingCart', JSON.stringify(cartList));
-  };
   
