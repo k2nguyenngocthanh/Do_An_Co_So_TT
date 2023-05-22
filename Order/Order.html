@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT Phone - Điện Thoại, Laptop, Tablet, Phụ kiện chính Hãng</title>
+    <!-- Font Awesome Line -->
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Owl Carousel -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--validate-->
+    <script>
+      function validateForm() {
+          var inputs = document.getElementsByTagName('input');
+          for (var i = 0; i < inputs.length; i++) {
+              if (inputs[i].value === '') {
+                  alert('Vui lòng điền đầy đủ thông tin vào tất cả các trường.');
+                  return false;
+              }
+          }
+          return true;
+      }
+  </script>
+    <!-- Email -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("tNigUjTrre27-wCel");
+   })();
+</script>
+    
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./Oder.css" />
+  </head>
+  <body>
+    <header>
+  
+
+  
+
+  <div class="gio__hang">
+    <div   id="cart"
+    class="item-btn flex items-center relative"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+      <div id="modal" class="modal">
+      <div class="modal__title">
+        <h3>Giỏ hàng</h3>
+      </div>
+      <table>
+        <tr>
+          <th>Sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Giá</th>
+        </tr>
+      </table>
+    
+      <div id="modal__wrapper">
+      
+      </div>
+      <div class="modal__footer">
+       
+        <form onsubmit="return validateForm()">
+        <div class="information container border mt-3 bg-light">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1 p-5 bg-primary ">
+              <h1>Lời cảm ơn</h1>
+              <b></b>
+              <h4>Xin chân thành cảm ơn vì sự hỗ trợ và mua hàng của quý khách. Chúng tôi đặc biệt biết ơn sự tin tưởng và lòng thành của quý khách dành cho chúng tôi. Sự ủng hộ và sự hài lòng của quý khách là động lực lớn để chúng tôi tiếp tục cung cấp dịch vụ tốt nhất và đáp ứng mọi nhu cầu của quý khách. Chúng tôi cam kết luôn đặt lợi ích của quý khách lên hàng đầu và sẽ không ngừng nỗ lực để mang đến trải nghiệm mua hàng tuyệt vời nhất. Một lần nữa, xin chân thành cảm ơn và mong được phục vụ quý khách trong tương lai.
+              </h4>
+            </div>
+        
+            <div class="col-span-1 py-3">
+              <h1> Thông tin khách hàng</h1>
+              <br>
+              <div class="form-group">
+                <h5 for="name">Tên Khách Hàng </h5>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+              </div>
+              <div class="form-group">
+                <h5 for="phone">Số điện thoại</h5>
+                <input type="text" class="form-control" id="phone" placeholder="Enter your phone" required  />
+              </div>
+              <div class="form-group">
+                <h5 for="email">Email</h5>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required />
+              </div>
+              <div class="form-group">
+                <h5 for="address">Địa chỉ</h5>
+                <input type="text" class="form-control" id="address" placeholder="Enter your address" required />
+              </div>
+              <div class="form-group">
+                <h5 for="message">Lời nhắn shop</h5>
+                <textarea id="message" rows="3" class="form-control"></textarea>
+              </div>
+              <div class="modal__total" id="modal__total">
+                <h3>Total:</h3>
+                  <span id="Total"></span>
+                  
+                </div>
+              
+        
+            
+            </div>
+          </div>
+        </div>
+      </form>
+        
+      
+        <div class="modal__btn">
+          
+            <button
+            id="modal__close-btn"
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded text-sm px-2 py-1 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            <a href="../index.html">Trở về Home</a>
+          </button>
+        
+         
+          <button  onclick="sendMail()"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-purple-300 font-medium rounded text-sm px-2 py-1 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+          >
+            <a   onclick="checkOut()" href="#">Thanh Toán</a>
+          </button>
+        </div>
+      </div>
+      
+    </div></div>
+  </div>
+ 
+  
+     
+    </header>
+
+
+
+
+
+
+    <!-- Jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Owl Carousel -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.1/axios.min.js"
+      integrity="sha512-NbjaUHU8g0+Y8tMcRtIz0irSU3MjLlEdCvp82MqciVF4R2Ru/eaXHDjNSOvS6EfhRYbmQHuznp/ghbUvcC0NVw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- My JS -->
+    <script src="../model/cartItemModel.js"></script>
+    <script src="../controller/homeController.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="./email.js"></script>
+  </body>
+</html>

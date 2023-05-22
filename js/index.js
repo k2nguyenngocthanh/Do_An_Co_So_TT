@@ -103,8 +103,8 @@ let deleteIndexCartItem = (id) => {
 };
 const onChangeQuantity = (id, action) => {
   // tim vi tri trong gio hang
-  const index = cartList.findIndex((item) => +item.id === +id);
-  console.log("🚀 ~ file: homeController.js:77 ~ onChangeQuantity ~ cartList:", cartList)
+  const index = cartList.findIndex((item) => +item.product.maSP === +id);
+
 
 
   if (index === -1) {
@@ -130,7 +130,15 @@ const onChangeQuantity = (id, action) => {
   }
 
   // render lại giao diện giỏ hàng
+  saveCart();
   renderContentCart(cartList);
+};
+const checkOut = () => {
+  cartList.splice(0, cartList.length);
+  // render lại giao diện giỏ hàng
+  renderContentCart(cartList);
+  saveCart();
+ 
 };
 
 // filter product
@@ -150,10 +158,4 @@ document.getElementById("filterProduct").onchange = function () {
   } else {
     renderProduct(productList);
   }
-};
-const checkOut = () => {
-  cartList.splice(0, cartList.length);
-  // render lại giao diện giỏ hàng
-  renderContentCart(cartList);
-  alert("bạn đã đặt hàng thành công");
 };

@@ -23,6 +23,11 @@
     <link rel="stylesheet" href="./Admin.css" />
   </head>
   <body>
+    <div id="spinner">
+      <div class="spinner-border text-primary position-fixed" role="status">
+          <span class="sr-only">Loading...</span>
+      </div>
+  </div>
     <div class="content">
       <h1 class="text-5xl text-center mt-4 font-bold">QUẢN LÝ SẢN PHẨM</h1>
       <div class="flex justify-between mt-10">
@@ -129,11 +134,21 @@
                 />
                 <span class="text-danger" id="statusNotice"></span>
               </div>
+              <div >
+                <label for="type">Thể loại</label>
+                <select style="width: 100%; font-size: 1rem;" name="type" id="type">
+                  <option value="">--Mời chọn loại máy--</option>
+                  <option value="samsung">Sam Sung</option>
+                  <option value="iphone">Iphone</option>
+                </select>
+              
+                <span class="text-danger" id="typeNotice"></span>
+              </div>
             </div>
             <div class="modal-footer">
               <button id="addBtn" class="btn btn-success" onclick="addProduct()">Thêm</button>
               <button id="deleteBtn" class="btn btn-secondary" onclick="reset()">Reset</button>
-              <button class="btn btn-primary" data-bs-dismiss="modal" onclick="updateProduct()">
+              <button id="updatebtn" class="btn btn-primary" data-bs-dismiss="modal" onclick="updateProduct()">
                 Cập nhật
               </button>
               <button class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
@@ -151,6 +166,7 @@
             <th class="border border-slate-600">Hình ảnh</th>
             <th class="border border-slate-600">Mô tả</th>
             <th class="border border-slate-600 w-40">Trạng thái</th>
+            <th class="border border-slate-600">Loại máy</th>
             <th class="border border-slate-600">Thao tác</th>
           </tr>
         </thead>

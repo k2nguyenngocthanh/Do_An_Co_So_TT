@@ -1,8 +1,8 @@
 // render product
 const renderProduct = (cartList) => {
-    let template = '';
-    cartList.forEach((item) => {
-      template += /*html*/ `
+  let template = "";
+  cartList.forEach((item) => {
+    template += /*html*/ `
                               <div class="product__card">
                                 <div class="card__img">
                                   <img src=${item.hinhAnh} alt="" />
@@ -19,29 +19,28 @@ const renderProduct = (cartList) => {
                                 </div>
                             </div>
                         `;
-    });
-    document.getElementById('card_product').innerHTML = template;
-  };
-  
-  let renderContentCart = (cartList) => {
- 
-    let contentHTML = '';
-    let total = 0;
-    let total1Product = 0;
-    cartList.forEach((item) => {
-      let contentCart = `
+  });
+  document.getElementById("card_product").innerHTML = template;
+};
+
+let renderContentCart = (cartList) => {
+  let contentHTML = "";
+  let total = 0;
+  let total1Product = 0;
+  cartList.forEach((item) => {
+    let contentCart = `
                         <div id="modal__content">
                           <div class="modal__img">
                             <img src="${item.product.hinhAnh}" alt="" />
                           </div>
                           <div class="modal__quantity">
                           <button onclick="onChangeQuantity(
-                            ${item.id}, 
+                            ${item.product.maSP}, 
                             'decrement'
                           )" class=" fa fa-angle-left "></button>
                             <span  id="cart-quantity"> ${item.quantity} </span>
                             <button onclick="onChangeQuantity(
-                              ${item.id},
+                              ${item.product.maSP},
                               'increment'
                             )" class="fa fa-angle-right"></button>
                           </div>
@@ -49,29 +48,31 @@ const renderProduct = (cartList) => {
                             <span>${item.product.giaSP * item.quantity}</span>
                           </div>
                           <div class="modal__icon">
-                            <i class="las la-times" onclick="deleteIndexCartItem('${item.product.maSP}')"></i>
+                            <i class="las la-times" onclick="deleteIndexCartItem('${
+                              item.product.maSP
+                            }')"></i>
                           </div>
                         </div> 
                       `;
-                      `<div>
+    `<div>
                       <span>
                   
                       </span></div>
                       
                       
-                      `
-      contentHTML += contentCart;
-      total1Product = item.product.giaSP * item.quantity;
+                      `;
+    contentHTML += contentCart;
+    total1Product = item.product.giaSP * item.quantity;
     total += total1Product;
-   
-    });
+  });
 
-    document.getElementById('modal__wrapper').innerHTML = contentHTML;
-    document.getElementById('Total').innerHTML = total;
- 
-  };
+  document.getElementById("modal__wrapper").innerHTML = contentHTML;
 
-
-
+  document.getElementById("Total").innerHTML = total;
   
-  
+
+};
+
+let saveCart = () => {
+  localStorage.setItem("shoppingCart", JSON.stringify(cartList));
+};

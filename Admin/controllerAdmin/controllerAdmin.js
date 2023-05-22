@@ -6,6 +6,7 @@ function getValueFromForm() {
     var hinhAnh = document.getElementById("hinhAnh").value;
     var moTa = document.getElementById("moTa").value;
     var trangThai = document.getElementById("trangThai").value;
+    var type=document.getElementById("type").value;
    
     return  {
       maSP,
@@ -14,6 +15,7 @@ function getValueFromForm() {
       hinhAnh,
       moTa,
       trangThai,
+      type,
     };
   }
   
@@ -24,6 +26,7 @@ function getValueFromForm() {
     document.getElementById('hinhAnh').value = '';
     document.getElementById('moTa').value = '';
     document.getElementById('trangThai').value = '';
+    document.getElementById('type').value='';
   }
   
    function showInformationProduct(product) {
@@ -33,6 +36,7 @@ function getValueFromForm() {
     document.getElementById('hinhAnh').value = product.hinhAnh;
     document.getElementById('moTa').value = product.moTa;
     document.getElementById('trangThai').value = product.trangThai;
+    document.getElementById('type').value=product.type;
   }
   
    function searchPositionEl(id, arr) {
@@ -48,7 +52,13 @@ function getValueFromForm() {
     }
     return position;
   }
+  function batLoading() {
+    document.getElementById("spinner").style.display = "flex";
+  }
   
+  function tatLoading() {
+    document.getElementById("spinner").style.display = "none";
+  }
   
   
   

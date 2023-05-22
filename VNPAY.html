@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thanh toán VNPAY Sandbox</title>
+    <script src="https://sandbox.vnpayment.vn/tryitnow/js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <h1>Thanh toán VNPAY Sandbox</h1>
+
+    <form id="vnpay_form" action="https://sandbox.vnpayment.vn/paymentv2/vpcpay.html" method="post">
+        <input type="hidden" name="vnp_TmnCode" value="OAQ632ES">
+        <input type="hidden" name="vnp_Amount" value="1000000">
+        <input type="hidden" name="vnp_Command" value="pay">
+        <input type="hidden" name="vnp_CreateDate" value="<?php echo date('YmdHis'); ?>">
+        <input type="hidden" name="vnp_CurrCode" value="VND">
+        <input type="hidden" name="vnp_IpAddr" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>">
+        <input type="hidden" name="vnp_Locale" value="vn">
+        <input type="hidden" name="vnp_OrderInfo" value="Thanh toan don hang">
+        <input type="hidden" name="vnp_ReturnUrl" value=" https://sandbox.vnpayment.vn/paymentv2/vpcpay.html">
+        <input type="hidden" name="vnp_TxnRef" value="<?php echo time(); ?>">
+        <input type="hidden" name="vnp_Version" value="2.0.0">
+        <input type="hidden" name="vnp_SecureHashType" value="SHA256">
+        <input type="hidden" name="vnp_SecureHash" value="">
+        <input type="submit" value="Thanh toán">
+    </form>
+
+    <script>
+        console.log(network);
+
+        var merchantCode = "OAQ632ES";
+
+        // Tạo chữ ký bảo mật cho yêu cầu thanh toán
+        function createVnpaySecureHash() {
+            var vnp_SecureHashSecret = "ARZTASQVWTPHCVQXJJVNZUHJVLUMMUTM";
+            var data = $("#vnpay_form").serializeArray();
+            data.sort(function (a, b) {
+                return a.name.localeCompare(b.name);
+            });
+            var signData = vnp_SecureHashSecret + data.join("");
+            var secureHash = CryptoJS.SHA256(signData);
+            $("input[name='vnp_SecureHash']").val(secureHash);
+        }
+
+        $(document).ready(function () {
+            createVnpaySecureHash();
+        });
+    </script>
+</body>
+</html>

@@ -19,7 +19,7 @@ function renderProduct(products) {
                         
                         <td class="border border-slate-600">${product.moTa}</td>
                         <td class="border border-slate-600">${product.trangThai}</td>
-                       </td>
+                        <td class="border border-slate-600">${product.type}</td>
                         <td class="border border-slate-600">
                         <button class="btn btn-danger" onclick="deleteProduct('${product.maSP}')">Xóa</button>
                         <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal" onclick="checkProduct('${product.maSP}')">Xem</button>
@@ -33,15 +33,18 @@ function renderProduct(products) {
 }
 
 function fetchProduct() {
+  batLoading();
   axios({
     url: `${BASE_URL}`,
     method: 'GET',
   })
     .then(function (res) {
       renderProduct(res.data);
+      tatLoading();
     })
     .catch(function (err) {
       console.log(err.message);
+      tatLoading(); 
     });
 }
 
@@ -69,22 +72,27 @@ function addProduct() {
 
             let isStatus=
             checkEmpty(product.tenSP, 'statusNotice');
+            let isType=
+            checkEmpty(product.tenSP,'typeNotice');
 
 
 
-         let isValid= isProduct && isPrice && isImage && isDescribe && isStatus; 
+         let isValid= isProduct && isPrice && isImage && isDescribe && isStatus && isType; 
          
         // checkDuplicate(product.tenProduct, res.data, 'nameNotice');
           
          
           if (isValid) {
+            batLoading();
             axios({
               url: `${BASE_URL}`,
               method: 'POST',
               data: product,
             })
               .then(function (res) {
+                $("#modal").modal("hide");
                 fetchProduct();
+                reset();
               })
               .catch(function (err) {
                 console.log(err);
@@ -99,6 +107,7 @@ function addProduct() {
 
 // Delete product
 function deleteProduct(maSP) {
+  batLoading();
   axios({
     url: `${BASE_URL}/${maSP}`,
     method: 'DELETE',
@@ -113,12 +122,16 @@ function deleteProduct(maSP) {
 
 // Edit product
 function checkProduct(maSP) {
+  
   axios({
     url: `${BASE_URL}/${maSP}`,
     method: 'GET',
   })
     .then(function (res) {
       showInformationProduct(res.data);
+      document.querySelector("#addbtn").style.display = "none";
+      document.querySelector("#updatebtn").style.display = "block";
+     
     })
     .catch(function (err) {
       console.log(err);
@@ -142,18 +155,23 @@ checkEmpty(product.tenSP, 'nameNotice') ;
 
    let isStatus=
    checkEmpty(product.tenSP, 'statusNotice');
+   let isType=
+   checkEmpty(product.tenSP,'typeNotice');
 
 
 
-let isValid= isProduct && isPrice && isImage && isDescribe && isStatus; 
+let isValid= isProduct && isPrice && isImage && isDescribe && isStatus && isType; 
 if (isValid){
+  batLoading();
   axios({
     url: `${BASE_URL}/${product.maSP}`,
     method: 'PUT',
     data: product,
   })
     .then(function (res) {
+      $("#modal").modal("hide");
       fetchProduct();
+      
     })
     .catch(function (err) {
       console.log(err);

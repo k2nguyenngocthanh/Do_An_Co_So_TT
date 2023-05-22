@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <title>Document</title>
+
+
+  <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("tNigUjTrre27-wCel");
+   })();
+</script>
+<script src="./email.js"></script>
+</head>
+
+<body>
+  <div class="container border mt-3 bg-light">
+    <div class="row">
+      <div class="col-md-6 p-5 bg-primary text-white">
+        <h1>Hi</h1>
+        <h4>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, dignissimos quia cumque vero et reiciendis
+          sunt voluptate optio ut quaerat magnam inventore ipsa asperiores consectetur recusandae at cupiditate ad est.
+        </h4>
+      </div>
+
+      <div class="col-md-6 py-3">
+        <h1> Thông tin khách hàng</h1>
+        <div class="form-group">
+          <h5 for="name">Name</h5>
+          <input type="text" class="form-control" id="name" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+          <h5 for="phone">Số điện thoại</h5>
+          <input type="text" class="form-control" id="phone" placeholder="Enter your phone" />
+        </div>
+        <div class="form-group">
+          <h5 for="email">Email</h5>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" />
+        </div>
+        <div class="form-group">
+          <h5 for="message">Message</h5>
+         <textarea id="message"  rows="3" class="form-control"></textarea>
+        </div>
+
+        <button onclick="sendMail()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
